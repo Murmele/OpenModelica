@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Open Modelica
+Comment=Modelica-based modeling and simulation environment
+Exec=OpenModelica
+StartupWMClass=OpenModelica
+Icon=org.openmodelica.openmodelica
+Terminal=false
+Type=Application
+Categories=Development;
+X-Desktop-File-Install-Version=0.1
+Name[de_DE]=org.openmodelica.openmodelica
