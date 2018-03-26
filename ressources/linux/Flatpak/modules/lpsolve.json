@@ -1,0 +1,12 @@
+{
+	"name": "lpsolve",
+	"buildsystem": "simple",
+	"sources": [
+		{
+		    "url": "https://dev-www.libreoffice.org/src/26b3e95ddf3d9c077c480ea45874b3b8-lp_solve_5.5.tar.gz",
+		    "sha256": "171816288f14215c69e730f7a4f1c325739873e21f946ff83884b350574e6695",
+		    "type": "file",
+		    "dest-filename": "external/tarballs/26b3e95ddf3d9c077c480ea45874b3b8-lp_solve_5.5.tar.gz"
+		}
+	]
+}

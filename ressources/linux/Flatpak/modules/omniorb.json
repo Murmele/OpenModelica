@@ -1,0 +1,20 @@
+{
+	"name": "omniorb",
+	"build-system": "simple",
+	"build-commands": [
+		"./configure",
+		"make",
+		"make install"
+	],
+	"config-opts": [
+		"--prefix=/app",
+		"--with-omniNames-logdir=/app/log"
+	],
+	"sources": [
+		{
+			"type": "archive",
+			"url": "https://vorboss.dl.sourceforge.net/project/omniorb/omniORB/omniORB-4.2.2/omniORB-4.2.2.tar.bz2",
+			"sha256": "ddd909ce31014be2beebf67a5e9fabbf03b5bb0c26b8c53ab64d470d77348ece"
+		}
+	]
+}

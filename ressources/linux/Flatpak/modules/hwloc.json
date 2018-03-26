@@ -1,0 +1,19 @@
+{
+/* braucht pciaccess*/
+	"name": "hwloc",
+	"buildsystem": "simple",
+	"build-commands": [
+		"./autogen.sh",
+		"./configure --prefix=/app --sbindir=/app/bin",
+		"make",	
+		"make install"	
+	],
+	/* clean?? */
+	"sources": [
+		{
+			"type": "git",
+			"url": "https://github.com/open-mpi/hwloc.git",
+			"tag": "v2.0"
+		}
+	]
+}

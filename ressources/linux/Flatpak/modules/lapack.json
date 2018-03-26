@@ -1,0 +1,24 @@
+{
+	"name": "lapack",
+	"buildsystem": "cmake",
+	"config-opts": ["-DCMAKE_BUILD_TYPE=Release",
+					"-DBUILD_TESTING=OFF",
+					"-DCMAKE_INSTALL_PREFIX=/app",
+					"-DCMAKE_INSTALL_LIBDIR=/app/lib",
+					"-DCMAKE_Fortran_COMPILER=gfortran",
+    				"-DLAPACKE_WITH_TMG=ON",
+    				"-DCBLAS=ON",
+    				"-DBUILD_DEPRECATED=ON"						
+	],
+	"build-commands": [
+						"make",
+						"make install"
+	],
+	"sources": [
+		{
+			"type": "git",
+			"url": "https://github.com/Reference-LAPACK/lapack.git",
+			"tag": "v3.8.0"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"name": "openscenegraph",
+	"buildsystem": "cmake",
+	"config-opts": ["-CMAKE_INSTALL_PREFIX:PATH=/app"],
+	"sources": [
+		{
+			"type": "git",
+			"url": "https://github.com/openscenegraph/OpenSceneGraph.git",
+			"tag": "OpenSceneGraph-3.5.10"
+		}
+	]
+}

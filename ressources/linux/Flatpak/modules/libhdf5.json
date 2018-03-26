@@ -1,0 +1,29 @@
+{ /* eventuell wie bei scilab machen*/
+	/* arch pkgbuild */
+	"name": "libhdf5",
+	"build-system": "simple",
+	"build-commands": [
+		"./configure",
+		"make",
+		"make install"
+	],
+	"config-opts": [ 
+		"--prefix=/app",
+		"--enable-hl",
+    	"--disable-threadsafe",
+    	"--enable-linux-lfs",
+    	"--enable-build-mode=production",
+    	"--with-pic",
+    	"--docdir=/app/share/doc/hdf5/",
+    	"--with-pthread=/app/lib/",
+    	"--disable-sharedlib-rpath",
+    	"--enable-cxx",
+    	"--enable-fortran",
+    	"--with-zlib"
+	],
+	"sources": {
+		"url":"https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.1/src/hdf5-1.10.1.tar.bz2",
+		"type": "archive",
+		"md5": "d89893c05ee7ea8611b51bb39450d64e"
+	}
+}

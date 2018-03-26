@@ -1,0 +1,84 @@
+{
+  "app-id": "org.openmodelica.openmodelica",
+  "runtime": "org.kde.Platform",
+  "runtime-version": "5.9",
+  "sdk": "org.kde.Sdk",
+  "command": "openmodelica",
+  "finish-args": [
+    "--socket=wayland",
+	"--socket=x11",
+    "--share=network",
+    "--device=dri",
+    "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
+    "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+    "--own-name=org.openmodelica.openmodelica",
+    "--filesystem=home",
+	"--env=PATH=/usr/lib/sdk/openjdk9/bin"],
+    "rename-icon":"openmodelica", /*Image will renamed to match the app-id konvention*/
+    "rename-appdata-file": "openmodellica.appdata.xml",
+	"sdk-extensions": ["org.freedesktop.Sdk.Extension.openjdk9","org.freedesktop.Sdk.Extension.gfortran-62"],
+    "modules": [
+		{
+			  "name": "openjdk",
+			  "buildsystem": "simple",
+			  "build-commands": [
+				"/usr/lib/sdk/openjdk9/install.sh"
+			  ]
+		},
+		{
+		  "name": "gfortran",
+		  "buildsystem": "simple",
+		  "build-commands": ["/usr/lib/sdk/gfortran-62/install.sh"]
+		},
+		"modules/boost.json",
+		"modules/hwloc.json",
+		"modules/openblas.json", /* lapack need this module*/
+		"modules/lapack.json", /* is blas needed? */
+		"modules/lpsolve.json",
+		"modules/zlib.json", /* dependency of libhdf5 */
+		"modules/libhdf5.json",
+		"modules/libexpat.json",
+		"modules/ncurses-6.0.json",
+		"modules/omniorb.json",
+		"modules/openscenegraph.json",
+		"modules/sundials.json",
+		{
+			"name": "openmodelica",
+		    "buildsystem": "simple",
+		    "build-commands" : [
+								"sed -i 's,../,https://github.com/OpenModelica/,g' .gitmodules",
+								"git submodule sync",
+								"git submodule update --init --recursive",
+								"autoconf",
+								"./configure",
+								"make -j8",
+								"build/bin/omc --version"],
+			"config-opts": ["--prefix=/app/",
+							"--with-lapack='-llapack -lblas'",
+							"-with-cppruntime",
+							"CC=clang",
+							"CXX=clang++"],
+		    "sources": [
+		      {
+		        "type": "git",
+		        "url": "https://github.com/OpenModelica/OpenModelica.git",
+		        "tag": "v1.9.7"
+		      }
+		    ]
+		  },
+			{
+				"name": "openmodelica-files",
+				"buildsystem": "simple",
+				"build-commands" : ["desktop-file-install --dir=/app/share/applications ressources/linux/mime/applications/org.openmodelica.openmodelica.desktop",
+									"install -Dm755 ressources/linux/openmodellica.appdata.xml /app/share/metainfo/openmodellica.appdata.xml",
+									"install -Dm755 ressources/icons/openmodelica.png /app/share/icons/hicolor/16x16/apps/openmodelica.png"],
+				"sources": [
+				  {
+					"type": "git",
+					"url": "https://github.com/Murmele/OpenModelica.git",
+					"branch": "Flatpak"
+				  }
+		    	]
+		}	
+    	]
+}

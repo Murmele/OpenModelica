@@ -1,0 +1,17 @@
+{
+	"name": "libexpat",
+	"buildsystem": "simple",
+	"build-commands": [
+		"./buildconf.sh",
+		"./configure --prefix=/app/lib CPPFLAGS=-DXML_LARGE_SIZE",
+		"make",
+		"make install"
+	],
+	"sources": [
+		{
+			"type": "git",
+			"url": "https://github.com/libexpat/libexpat.git",
+			"tag": "R_2_2_5"
+		}
+	]
+}

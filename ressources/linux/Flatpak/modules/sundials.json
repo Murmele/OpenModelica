@@ -1,0 +1,16 @@
+{
+	"name": "sundials",
+	"buildsystem": "cmake",
+	"config-opts": ["-DDCMAKE_INSTALL_PREFIX:PATH=/app",
+					"-DEXAMPLES_INSTALL_PATH=/app/examples"],
+	"build-commands" : ["make",
+						"make install"
+	],
+	"sources": [
+		{
+			"type": "git",
+			"url": "https://github.com/LLNL/sundials.git",
+			"tag": "v3.1.0"
+		}
+	]
+}
