@@ -1,12 +1,19 @@
 {
 	"name": "lpsolve",
 	"buildsystem": "simple",
+	"build-commands": [
+		"tar -xvzf lp_solve_5.5.2.5_dev_ux32.tar.gz",
+		"mkdir /app/usr/lib",
+		"mv liblpsolve*.a /app/lib",
+		"mv liblpsolve*.so /app/lib",
+		"mkdir /app/include/lpsolve",
+		"mv *.h /app/include/lpsolve"
+	],
 	"sources": [
 		{
-		    "url": "https://dev-www.libreoffice.org/src/26b3e95ddf3d9c077c480ea45874b3b8-lp_solve_5.5.tar.gz",
-		    "sha256": "171816288f14215c69e730f7a4f1c325739873e21f946ff83884b350574e6695",
-		    "type": "file",
-		    "dest-filename": "external/tarballs/26b3e95ddf3d9c077c480ea45874b3b8-lp_solve_5.5.tar.gz"
+			"type": "file",
+		    "url": "https://netcologne.dl.sourceforge.net/project/lpsolve/lpsolve/5.5.2.5/lp_solve_5.5.2.5_dev_ux32.tar.gz"	,
+			"sha256": "006ab5604836c8e246dd0ffe7b8a98943846a90fb7c6c87eb5cc961846b16b07"
 		}
 	]
 }

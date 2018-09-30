@@ -1,27 +1,18 @@
 {
-	"name": "openblas",
-	"no-autogen": true,
-	"build-options": {
-		"ldflags": "-L/app/lib64",
-		"env": {
-			"PATH": "/usr/bin:/app/bin:/usr/lib/sdk/gfortran-62/bin" /* musste hinzugefügt werden, da sonst gfortran nicht gefunden wurde */
-		}
-	},
-  	"make-args": [
-		"DYNAMIC_ARCH=1",
-		"FC=gfortran"
-  	],
-  	"make-install-args": [
-		"PREFIX=/app"
-  	],
-  	"sources": [
-		{
-		  "type": "archive",
-		  "url": "https://github.com/xianyi/OpenBLAS/archive/v0.2.20.tar.gz",
-		  "sha256": "5ef38b15d9c652985774869efd548b8e3e972e1e99475c673b25537ed7bcf394"
-		},
-		{
-		  "type": "shell", "commands": ["/usr/lib/sdk/gfortran-62/use.sh", "echo $PATH"]
-		}
-  	]
+  "name": "openblas",
+  "no-autogen": true,
+  "make-args": [
+    "DYNAMIC_ARCH=1",
+    "FC=gfortran"
+  ],
+  "make-install-args": [
+    "PREFIX=/app"
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "url": "https://github.com/xianyi/OpenBLAS/archive/v0.2.20.tar.gz",
+      "sha256": "5ef38b15d9c652985774869efd548b8e3e972e1e99475c673b25537ed7bcf394"
+    }
+  ]
 }

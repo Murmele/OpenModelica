@@ -1,0 +1,19 @@
+{
+	"name": "lpsolve",
+	"buildsystem": "cmake",
+	"builddir": true, /* create explicitly a build folder */
+	"build-commands": [
+	],
+	"config-opts": ["-DCMAKE_INSTALL_PREFIX:PATH=/app"],
+	"sources": [
+		{
+			"type": "archive",
+		    "url": "https://datapacket.dl.sourceforge.net/project/lpsolve/lpsolve/5.5.2.5/lp_solve_5.5.2.5_source.tar.gz"	,
+			"sha256": "201a7c62b8b3360c884ee2a73ed7667e5716fc1e809755053b398c2f5b0cf28a"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/Murmele/lpsolve_cmake.git"
+		}
+	]
+}

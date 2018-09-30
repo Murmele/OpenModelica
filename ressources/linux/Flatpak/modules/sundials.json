@@ -1,11 +1,10 @@
 {
 	"name": "sundials",
 	"buildsystem": "cmake",
-	"config-opts": ["-DDCMAKE_INSTALL_PREFIX:PATH=/app",
+	"config-opts": ["-DCMAKE_INSTALL_PREFIX:PATH=/app", /* nur -DCMAKE .... nicht -DD?? */
 					"-DEXAMPLES_INSTALL_PATH=/app/examples"],
-	"build-commands" : ["make",
-						"make install"
-	],
+	"builddir": true, /* create explicitly a build folder */
+	"build-commands" : [	],
 	"sources": [
 		{
 			"type": "git",

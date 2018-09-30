@@ -13,28 +13,33 @@
     "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
     "--own-name=org.openmodelica.openmodelica",
     "--filesystem=home",
-	"--env=PATH=/usr/lib/sdk/openjdk9/bin"],
+	"--env=PATH=/app/bin:/usr/lib/sdk/openjdk10/bin:app/jre/bin",
+	"--env=LD_LIBRARY_PATH=/usr/lib/sdk/gfortran-62/lib:/app/lib:/app/lib64"],
     "rename-icon":"openmodelica", /*Image will renamed to match the app-id konvention*/
     "rename-appdata-file": "openmodellica.appdata.xml",
-	"sdk-extensions": ["org.freedesktop.Sdk.Extension.openjdk9","org.freedesktop.Sdk.Extension.gfortran-62"],
+	"sdk-extensions": ["org.freedesktop.Sdk.Extension.openjdk10","org.freedesktop.Sdk.Extension.gfortran-62"],
+	"build-options": ["--env=PATH=/app/bin:/usr/lib/sdk/openjdk10/bin:app/jre/bin"],
     "modules": [
 		{
 			  "name": "openjdk",
 			  "buildsystem": "simple",
 			  "build-commands": [
-				"/usr/lib/sdk/openjdk9/install.sh"
+				"/usr/lib/sdk/openjdk10/install.sh"
 			  ]
 		},
 		{
 		  "name": "gfortran",
 		  "buildsystem": "simple",
-		  "build-commands": ["/usr/lib/sdk/gfortran-62/install.sh"]
+		  "build-commands": [
+			"/usr/lib/sdk/gfortran-62/install.sh",
+			"cp -a /usr/lib/sdk/gfortran-62/bin /app",
+        	"cp -a /usr/lib/sdk/gfortran-62/lib /app",
+        	"cp -a /usr/lib/sdk/gfortran-62/libexec /app"]
 		},
 		"modules/boost.json",
 		"modules/hwloc.json",
 		"modules/openblas.json", /* lapack need this module*/
 		"modules/lapack.json", /* is blas needed? */
-		"modules/lpsolve.json",
 		"modules/zlib.json", /* dependency of libhdf5 */
 		"modules/libhdf5.json",
 		"modules/libexpat.json",
@@ -42,20 +47,30 @@
 		"modules/omniorb.json",
 		"modules/openscenegraph.json",
 		"modules/sundials.json",
+		"modules/lpsolve_cmake.json",
 		{
 			"name": "openmodelica",
 		    "buildsystem": "simple",
+			"build-options" : {
+                "env" : {
+                    "PATH" : "/usr/bin:/app/bin:/usr/lib/sdk/gfortran-62/bin:/app/lib:/usr/lib/sdk/openjdk9/bin:/app/java/ant/bin:/app/java/ant/lib:/app:/app/usr/lib:/app/usr/include:/app/thirdparty/",
+                    "ANT_HOME" : "/app/java/ant/bin",
+                    "JAVA_HOME" : "/usr/lib/sdk/openjdk9/bin"
+                }
+            },
 		    "build-commands" : [
 								"sed -i 's,../,https://github.com/OpenModelica/,g' .gitmodules",
 								"git submodule sync",
 								"git submodule update --init --recursive",
+								"export LD_LIBRARY_PATH=/app/local/lib:/lib:/app/lib",
 								"autoconf",
-								"./configure",
-								"make -j8",
-								"build/bin/omc --version"],
+								"./configure --prefix=/app --exec_prefix=/app --datarootdir=/app --with-lapack='-llapacke -llapack -lblas' -with-cppruntime --with-java-homedir=/app/jre CC=clang CXX=clang++",
+								"make",
+								"make install"],
 			"config-opts": ["--prefix=/app/",
 							"--with-lapack='-llapack -lblas'",
 							"-with-cppruntime",
+							"--with-java-homedir=/app/jre",
 							"CC=clang",
 							"CXX=clang++"],
 		    "sources": [

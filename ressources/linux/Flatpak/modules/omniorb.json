@@ -1,10 +1,7 @@
 {
 	"name": "omniorb",
-	"build-system": "simple",
+	"build-system": "autotools",
 	"build-commands": [
-		"./configure",
-		"make",
-		"make install"
 	],
 	"config-opts": [
 		"--prefix=/app",

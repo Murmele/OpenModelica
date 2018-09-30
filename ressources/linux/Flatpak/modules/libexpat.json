@@ -2,11 +2,11 @@
 	"name": "libexpat",
 	"buildsystem": "simple",
 	"build-commands": [
-		"./buildconf.sh",
-		"./configure --prefix=/app/lib CPPFLAGS=-DXML_LARGE_SIZE",
-		"make",
-		"make install"
+		"cmake expat/CMakeLists.txt",
+		"make -C expat",
+		"make DESTDIR=/app install -C expat"
 	],
+	"config-opts" : ["-DCMAKE_INSTALL_PREFIX:PATH=/app"], /* funktioniert nicht (D am Anfang anhaengen??)*/
 	"sources": [
 		{
 			"type": "git",

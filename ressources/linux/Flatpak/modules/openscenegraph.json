@@ -1,7 +1,7 @@
 {
 	"name": "openscenegraph",
 	"buildsystem": "cmake",
-	"config-opts": ["-CMAKE_INSTALL_PREFIX:PATH=/app"],
+	"config-opts": ["-DCMAKE_INSTALL_PREFIX:PATH=/app"],
 	"sources": [
 		{
 			"type": "git",
